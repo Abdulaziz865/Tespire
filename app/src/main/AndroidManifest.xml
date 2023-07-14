@@ -13,10 +13,10 @@
         android:theme="@style/splashScreenTheme"
         tools:targetApi="31">
         <activity
-            android:name=".white.ui.activity.HomeActivity"
-            android:exported="false" />
+            android:name=".white.ui.activities.HomeActivity"
+            android:exported="true" />
         <activity
-            android:name=".white.ui.activity.MainActivity"
+            android:name=".white.ui.activities.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

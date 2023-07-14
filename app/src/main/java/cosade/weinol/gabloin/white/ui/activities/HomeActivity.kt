@@ -1,21 +1,21 @@
-package cosade.weinol.gabloin.white.ui.fragments.home
+package cosade.weinol.gabloin.white.ui.activities
 
-import android.app.DatePickerDialog.OnDateSetListener
+import android.app.DatePickerDialog
 import android.os.Bundle
 import android.view.View
 import android.widget.DatePicker
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.DialogFragment
-import androidx.fragment.app.Fragment
 import by.kirich1409.viewbindingdelegate.viewBinding
 import cosade.weinol.gabloin.R
-import cosade.weinol.gabloin.databinding.FragmentHomeBinding
+import cosade.weinol.gabloin.databinding.ActivityHomeBinding
 import cosade.weinol.gabloin.white.utils.DatePickerFragment
 import java.util.*
 import kotlin.math.roundToInt
 
-class HomeFragment : Fragment(R.layout.fragment_home), OnDateSetListener {
+class HomeActivity : AppCompatActivity(R.layout.activity_home), DatePickerDialog.OnDateSetListener {
 
-    private val binding by viewBinding(FragmentHomeBinding::bind)
+    private val binding by viewBinding(ActivityHomeBinding::bind)
     private var date1Flag = false
     private var date2Flag = false
     private var date3Flag = false
@@ -36,8 +36,8 @@ class HomeFragment : Fragment(R.layout.fragment_home), OnDateSetListener {
     private lateinit var c3: Calendar
     private lateinit var currentDate: Calendar
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
         initialize()
         setupListeners()
     }
@@ -53,19 +53,19 @@ class HomeFragment : Fragment(R.layout.fragment_home), OnDateSetListener {
         binding.btn1.setOnClickListener(View.OnClickListener {
             currentBtn = 1
             val datePicker: DialogFragment = DatePickerFragment()
-            activity?.let { it1 -> datePicker.show(it1.supportFragmentManager, "date picker") }
+            this.let { it1 -> datePicker.show(it1.supportFragmentManager, "date picker") }
         })
 
         binding.btn2.setOnClickListener(View.OnClickListener {
             currentBtn = 2
             val datePicker: DialogFragment = DatePickerFragment()
-            activity?.let { it1 -> datePicker.show(it1.supportFragmentManager, "date picker") }
+            this.let { it1 -> datePicker.show(it1.supportFragmentManager, "date picker") }
         })
 
         binding.btn3.setOnClickListener(View.OnClickListener {
             currentBtn = 3
             val datePicker: DialogFragment = DatePickerFragment()
-            activity?.let { it1 -> datePicker.show(it1.supportFragmentManager, "date picker") }
+            this.let { it1 -> datePicker.show(it1.supportFragmentManager, "date picker") }
         })
 
         binding.calculateBtn.setOnClickListener {
@@ -148,38 +148,8 @@ class HomeFragment : Fragment(R.layout.fragment_home), OnDateSetListener {
         val days1: Long = c1.time.time
         val days2: Long = c2.time.time
         val days3: Long = c3.time.time
-        //        if(days1>days2 || days1>days3 || days2 > days3)
-//        {
-//            return false;
-//        }
+
         return true
-    }
-
-//    @RequiresApi(api = Build.VERSION_CODES.O)
-//    public long getDays(Calendar sd, Calendar ed)
-//    {
-//        LocalDate startDate = LocalDate.parse(getDatePattern(sd), DateTimeFormatter.ISO_LOCAL_DATE);
-//        LocalDate lastDate = LocalDate.parse(getDatePattern(ed), DateTimeFormatter.ISO_LOCAL_DATE);
-//        Duration diff = Duration.between(startDate.atStartOfDay(), lastDate.atStartOfDay());
-//        long diffDays = diff.toDays();
-//        return diffDays;
-//    }
-
-    //    @RequiresApi(api = Build.VERSION_CODES.O)
-    //    public long getDays(Calendar sd, Calendar ed)
-    //    {
-    //        LocalDate startDate = LocalDate.parse(getDatePattern(sd), DateTimeFormatter.ISO_LOCAL_DATE);
-    //        LocalDate lastDate = LocalDate.parse(getDatePattern(ed), DateTimeFormatter.ISO_LOCAL_DATE);
-    //        Duration diff = Duration.between(startDate.atStartOfDay(), lastDate.atStartOfDay());
-    //        long diffDays = diff.toDays();
-    //        return diffDays;
-    //    }
-
-    fun getDatePattern(d: Calendar): String? {
-        return Integer.toString(d[Calendar.YEAR]) + "-" + Integer.toString(
-            d[Calendar.MONTH]
-        ) + "-" + Integer.toString(d[Calendar.DAY_OF_MONTH])
-        //        return "YYYY-MM-YY";
     }
 
     override fun onDateSet(view: DatePicker?, year: Int, month: Int, day: Int) {
