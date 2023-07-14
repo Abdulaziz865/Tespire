@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string-array name="gender">
+        <item>גבר</item>
+        <item>אישה</item>
+    </string-array>
+
+    <string-array name="family">
+        <item>ללא זוגוית וילדים</item>
+        <item>נשוי</item>
+        <item>נשוי+ילדים</item>
+        <item>חד הורי</item>
+    </string-array>
+
+    <string-array name="job">
+        <item>שכיר</item>
+        <item>עצמאי</item>
+    </string-array>
+</resources>
