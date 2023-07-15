@@ -2,6 +2,7 @@ package cosade.weinol.gabloin.white.ui.activities
 
 import android.app.DatePickerDialog
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.DatePicker
 import androidx.appcompat.app.AppCompatActivity
@@ -53,19 +54,19 @@ class HomeActivity : AppCompatActivity(R.layout.activity_home), DatePickerDialog
         binding.btn1.setOnClickListener(View.OnClickListener {
             currentBtn = 1
             val datePicker: DialogFragment = DatePickerFragment()
-            this.let { it1 -> datePicker.show(it1.supportFragmentManager, "date picker") }
+            datePicker.show(supportFragmentManager, "date picker")
         })
 
         binding.btn2.setOnClickListener(View.OnClickListener {
             currentBtn = 2
             val datePicker: DialogFragment = DatePickerFragment()
-            this.let { it1 -> datePicker.show(it1.supportFragmentManager, "date picker") }
+            datePicker.show(supportFragmentManager, "date picker")
         })
 
         binding.btn3.setOnClickListener(View.OnClickListener {
             currentBtn = 3
             val datePicker: DialogFragment = DatePickerFragment()
-            this.let { it1 -> datePicker.show(it1.supportFragmentManager, "date picker") }
+            datePicker.show(supportFragmentManager, "date picker")
         })
 
         binding.calculateBtn.setOnClickListener {
@@ -75,7 +76,9 @@ class HomeActivity : AppCompatActivity(R.layout.activity_home), DatePickerDialog
                 binding.totalAge.text = totalAgeVal.toString()
                 binding.totalService.text = totalServiceVal.toString()
                 ageRateVal = findAgeRate(totalAgeVal.toInt())
-                lastBasicPay = binding.lastSalary.text.toString().toInt()
+                val text = binding.lastSalary.text.toString().trim()
+                val intValue: Int? = text.toIntOrNull()
+                lastBasicPay = intValue ?: 0
                 grossPension = (totalServiceVal * lastBasicPay * 7 / 300.0).roundToInt().toDouble()
                 gradutyPension = (grossPension * 0.35).roundToInt().toDouble()
                 commutedPension = (gradutyPension * 12 * ageRateVal).roundToInt().toDouble()
