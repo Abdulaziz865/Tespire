@@ -14,9 +14,11 @@
         tools:targetApi="31">
         <activity
             android:name=".white.ui.activities.HomeActivity"
+            android:screenOrientation="portrait"
             android:exported="true" />
         <activity
             android:name=".white.ui.activities.MainActivity"
+            android:screenOrientation="portrait"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
