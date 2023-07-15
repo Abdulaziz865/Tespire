@@ -2,12 +2,12 @@ package cosade.weinol.gabloin.white.ui.activities
 
 import android.app.DatePickerDialog
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.widget.DatePicker
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.DialogFragment
 import by.kirich1409.viewbindingdelegate.viewBinding
+import com.google.android.material.snackbar.Snackbar
 import cosade.weinol.gabloin.R
 import cosade.weinol.gabloin.databinding.ActivityHomeBinding
 import cosade.weinol.gabloin.white.utils.DatePickerFragment
@@ -87,6 +87,19 @@ class HomeActivity : AppCompatActivity(R.layout.activity_home), DatePickerDialog
                 binding.gradutyPension.text = gradutyPension.toString()
                 binding.commutedPension.text = commutedPension.toString()
                 binding.netPension.text = netPension.toString()
+
+                if (!date1Flag && !date3Flag){
+                    Snackbar.make(binding.root, "Fill in the date of birth and your retirement date", Snackbar.LENGTH_SHORT).show()
+                }
+                else if (!date1Flag){
+                    Snackbar.make(binding.root, "Fill in the date of birth", Snackbar.LENGTH_SHORT).show()
+                }
+                else if (!date3Flag){
+                    Snackbar.make(binding.root, "Fill in your retirement date", Snackbar.LENGTH_SHORT).show()
+                }
+            }
+            else {
+                Snackbar.make(binding.root, "Fill in the field", Snackbar.LENGTH_SHORT).show()
             }
         }
     }
